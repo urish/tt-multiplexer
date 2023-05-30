@@ -1,4 +1,4 @@
-name: formal
+name: gds
 # either manually started, or on a schedule
 on: [ push, workflow_dispatch, pull_request ]
 
