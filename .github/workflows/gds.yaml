@@ -52,7 +52,19 @@ jobs:
 
     - name: Prepare configuration
       run:
-        echo TODO
+        cp ol2/tt_ctrl/runs/RUN_*/final/gds/tt_ctrl.magic.gds ol2/tt_top/gds/tt_ctrl.gds
+        cp ol2/tt_ctrl/runs/RUN_*/final/lef/tt_ctrl.lef ol2/tt_top/lef
+        cp ol2/tt_mux/runs/RUN_*/final/gds/tt_mux.magic.gds ol2/tt_top/gds/tt_mux.gds
+        cp ol2/tt_mux/runs/RUN_*/final/lef/tt_mux.lef ol2/tt_top/lef
+        cp tt_um_test/tt_um_test.gds ol2/tt_top/gds
+        cp tt_um_test/tt_um_test.lef ol2/tt_top/lef
+        cp tt_um_test/tt_um_test.v ol2/tt_top/verilog
+        python py/place_modules.py sim/modules_sim.yaml cfg/modules_placed.yaml
+        python py/gen_tt_user_module.py rtl/tt_user_module.v.mak sim/modules_sim.yaml  > rtl/tt_user_module.v
+
+    - name: Harden tt_top
+      working-directory: ol2/tt_top
+      run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
     - name: Copy final results
       run: |
@@ -67,6 +79,11 @@ jobs:
         cp ol2/tt_mux/runs/RUN_*/final/pnl/tt_mux.pnl.v verilog/gl/tt_mux.v
         cp ol2/tt_mux/runs/RUN_*/final/nl/tt_mux.nl.v verilog/gl/tt_mux.nl.v
         cp -r ol2/tt_mux/runs/RUN_*/final/spef/* spef/
+        cp ol2/tt_top/runs/RUN_*/final/gds/tt_top.magic.gds gds/tt_top.gds
+        cp ol2/tt_top/runs/RUN_*/final/lef/tt_top.lef lef/tt_top.lef
+        cp ol2/tt_top/runs/RUN_*/final/pnl/tt_top.pnl.v verilog/gl/tt_top.v
+        cp ol2/tt_top/runs/RUN_*/final/nl/tt_top.nl.v verilog/gl/tt_top.nl.v
+        cp -r ol2/tt_top/runs/RUN_*/final/spef/* spef/
 
     - name: upload macros artifact
       uses: actions/upload-artifact@v3
@@ -77,3 +94,9 @@ jobs:
             lef/*
             spef/*
             verilog/gl/*
+
+    - name: upload GDS artifact
+      uses: actions/upload-artifact@v3
+      with:
+          name: GDS
+          path: ol2/tt_top/runs/*
