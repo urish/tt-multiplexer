@@ -12,6 +12,18 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v3
 
+    # Set Python up
+    - name: setup python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install Python requirements
+      run: pip3 install -r py/requirements.txt
+
+    - name: Make tt_defs.vh
+      run: make rtl/tt_defs.vh
+
     - name: checkout openlane2 repo
       uses: actions/checkout@v3
       with:
@@ -20,8 +32,13 @@ jobs:
 
     - uses: cachix/install-nix-action@v20
 
-    - name: Harden with openlane 2
-      run: nix-shell openlane2/shell.nix --run "openlane -p sky130A ol2/top/config.json"
+    - name: Harden tt_ctrl
+      working-directory: ol2/tt_ctrl
+      run: nix-shell openlane2/shell.nix --run "python build.py"      
+
+    - name: Harden tt_mux
+      working-directory: ol2/tt_mux
+      run: nix-shell openlane2/shell.nix --run "python build.py"      
 
     # install oss fpga tools for cocotb and iverilog
 #    - name: install oss-cad-suite
@@ -31,14 +48,3 @@ jobs:
 #    - run: | 
 #        yosys --version
     
-    - name: python requirements
-      run: pip3 install -r py/requirements.txt
-
-    # formal
-    - name: formal tristate
-      run: |
-        make formal_tristate 
-
-    - name: formal tristate
-      run: |
-        make formal_connectivity
