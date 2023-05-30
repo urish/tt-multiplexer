@@ -31,10 +31,9 @@ jobs:
         path: openlane2
 
     - uses: cachix/install-nix-action@v20
-
+      
     - name: Enable nix cache
       run: |
-        nix-env -f "<nixpkgs>" -iA cachix
         cachix use openlane
 
     - name: Harden tt_ctrl
