@@ -6,6 +6,9 @@ jobs:
   gds:
     # ubuntu
     runs-on: ubuntu-latest
+    env:
+      PYTHONIOENCODING: utf-8
+
     steps:
     # need the repo checked out
 
@@ -41,7 +44,7 @@ jobs:
     - name: Install Sky130 PDK
       run: |
         pip3 install volare
-        volare enable --pdk sky130 12df12e2e74145e31c5a13de02f9a1e176b56e67  
+        volare enable --pdk sky130 12df12e2e74145e31c5a13de02f9a1e176b56e67 
 
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
