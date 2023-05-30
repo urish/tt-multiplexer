@@ -54,21 +54,19 @@ jobs:
       run:
         echo TODO
 
-    # install oss fpga tools for cocotb and iverilog
-#    - name: install oss-cad-suite
-#      uses: YosysHQ/setup-oss-cad-suite@v2
-#      with:
-#          github-token: ${{ secrets.GITHUB_TOKEN }}
-#    - run: | 
-#        yosys --version
-
     - name: Copy final results
       run: |
         mkdir -p gds spef lef verilog/gl
         cp ol2/tt_ctrl/runs/RUN_*/final/gds/tt_ctrl.magic.gds gds/tt_ctrl.gds
         cp ol2/tt_ctrl/runs/RUN_*/final/lef/tt_ctrl.lef lef/tt_ctrl.lef
+        cp ol2/tt_ctrl/runs/RUN_*/final/pnl/tt_ctrl.pnl.v verilog/gl/tt_ctrl.v
+        cp ol2/tt_ctrl/runs/RUN_*/final/nl/tt_ctrl.nl.v verilog/gl/tt_ctrl.nl.v
+        cp -r ol2/tt_ctrl/runs/RUN_*/final/spef/* spef/
         cp ol2/tt_mux/runs/RUN_*/final/gds/tt_mux.magic.gds gds/tt_mux.gds
         cp ol2/tt_mux/runs/RUN_*/final/lef/tt_mux.lef lef/tt_mux.lef
+        cp ol2/tt_mux/runs/RUN_*/final/pnl/tt_mux.pnl.v verilog/gl/tt_mux.v
+        cp ol2/tt_mux/runs/RUN_*/final/nl/tt_mux.nl.v verilog/gl/tt_mux.nl.v
+        cp -r ol2/tt_mux/runs/RUN_*/final/spef/* spef/
 
     - name: upload macros artifact
       uses: actions/upload-artifact@v3
