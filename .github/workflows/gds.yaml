@@ -32,7 +32,7 @@ jobs:
 
     - uses: cachix/install-nix-action@v20
       
-    - uses: cachix/cachix-action@vXX
+    - uses: cachix/cachix-action@v12
       with:
         extraPullNames: openlane
 
