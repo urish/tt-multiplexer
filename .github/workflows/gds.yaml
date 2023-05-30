@@ -32,6 +32,11 @@ jobs:
 
     - uses: cachix/install-nix-action@v20
 
+    - name: Enable nix cache
+      run: |
+        nix-env -f "<nixpkgs>" -iA cachix
+        cachix use openlane
+
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
       run: nix-shell openlane2/shell.nix --run "python build.py"      
