@@ -32,9 +32,9 @@ jobs:
 
     - uses: cachix/install-nix-action@v20
       
-    - name: Enable nix cache
-      run: |
-        cachix use openlane
+    - uses: cachix/cachix-action@vXX
+      with:
+        extraPullNames: openlane
 
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
