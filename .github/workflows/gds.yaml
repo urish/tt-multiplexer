@@ -27,9 +27,7 @@ jobs:
       run: pip3 install -r py/requirements.txt
 
     - name: Generate sources from user macro configuration
-      run: |
-        cp sim/modules_sim.yaml cfg/modules.yaml
-        make gensrc
+      run: make gensrc
 
     - name: checkout openlane2 repo
       uses: actions/checkout@v3
