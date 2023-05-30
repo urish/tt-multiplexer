@@ -37,6 +37,11 @@ jobs:
         name: openlane
         extraPullNames: openlane
 
+    - name: Install Sky130 PDK
+      run: |
+        pip3 install volare
+        volare enable --pdk sky130 f70d8ca46961ff92719d8870a18a076370b85f6c
+
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
       run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"      
@@ -56,4 +61,21 @@ jobs:
 #          github-token: ${{ secrets.GITHUB_TOKEN }}
 #    - run: | 
 #        yosys --version
-    
+
+    - name: Copy final results
+      run: |
+        mkdir -p gds spef lef verilog/gl
+        cp ol2/tt_ctrl/runs/RUN_*/final/gds/tt_ctrl.magic.gds gds/tt_ctrl.gds
+        cp ol2/tt_ctrl/runs/RUN_*/final/lef/tt_ctrl.lef lef/tt_ctrl.lef
+        cp ol2/tt_mux/runs/RUN_*/final/gds/tt_mux.magic.gds gds/tt_mux.gds
+        cp ol2/tt_mux/runs/RUN_*/final/lef/tt_mux.lef lef/tt_mux.lef
+
+    - name: upload macros artifact
+      uses: actions/upload-artifact@v3
+      with:
+          name: macros
+          path: |
+            gds/*
+            lef/*
+            spef/*
+            verilog/gl/*
