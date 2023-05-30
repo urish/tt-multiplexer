@@ -40,7 +40,7 @@ jobs:
     - name: Install Sky130 PDK
       run: |
         pip3 install volare
-        volare enable --pdk sky130 f70d8ca46961ff92719d8870a18a076370b85f6c
+        volare enable --pdk sky130 af3485525297d5cbe93c129ea853da2d588fac41
 
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
