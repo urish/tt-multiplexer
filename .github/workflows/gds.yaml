@@ -7,6 +7,8 @@ jobs:
     # ubuntu
     runs-on: ubuntu-latest
     env:
+      OPENLANE_TAG: 4a4de6ab426c8e53ae9534fdba2366a863a5af7e
+      SKY130_PDK_VERSION: 12df12e2e74145e31c5a13de02f9a1e176b56e67
       PYTHONIOENCODING: utf-8
 
     steps:
@@ -32,7 +34,7 @@ jobs:
       with:
         repository: efabless/openlane2
         path: openlane2
-        ref: 4a4de6ab426c8e53ae9534fdba2366a863a5af7e
+        ref: ${{ env.OPENLANE_TAG }}
 
     - uses: cachix/install-nix-action@v20
       
@@ -44,7 +46,7 @@ jobs:
     - name: Install Sky130 PDK
       run: |
         pip3 install volare
-        volare enable --pdk sky130 12df12e2e74145e31c5a13de02f9a1e176b56e67 
+        volare enable --pdk sky130 ${{ env.SKY130_PDK_VERSION }}
 
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
