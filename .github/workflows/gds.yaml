@@ -34,6 +34,7 @@ jobs:
       
     - uses: cachix/cachix-action@v12
       with:
+        name: openlane
         extraPullNames: openlane
 
     - name: Harden tt_ctrl
@@ -42,7 +43,11 @@ jobs:
 
     - name: Harden tt_mux
       working-directory: ol2/tt_mux
-      run: nix-shell openlane2/shell.nix --run "python build.py"      
+      run: nix-shell openlane2/shell.nix --run "python build.py"
+
+    - name: Prepare configuration
+      run:
+        echo TODO
 
     # install oss fpga tools for cocotb and iverilog
 #    - name: install oss-cad-suite
