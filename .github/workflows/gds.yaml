@@ -19,8 +19,9 @@ jobs:
         path: openlane2
 
     - uses: cachix/install-nix-action@v20
-      with:
-        nix_path: nixpkgs=channel:nixos-unstable
+
+    - name: Harden with openlane 2
+      run: nix-shell openlane2/shell.nix --run "openlane -p sky130A ol2/top/config.json"
 
     # install oss fpga tools for cocotb and iverilog
 #    - name: install oss-cad-suite
