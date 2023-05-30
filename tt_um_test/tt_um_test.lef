@@ -7,6 +7,46 @@ MACRO tt_um_test
   FOREIGN tt_um_test ;
   ORIGIN 0.000 0.000 ;
   SIZE 167.900 BY 108.800 ;
+  PIN VGND
+    DIRECTION INOUT ;
+    USE GROUND ;
+    PORT
+      LAYER met4 ;
+        RECT 43.930 5.200 45.530 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 83.140 5.200 84.740 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 122.350 5.200 123.950 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 161.560 5.200 163.160 103.600 ;
+    END
+  END VGND
+  PIN VPWR
+    DIRECTION INOUT ;
+    USE POWER ;
+    PORT
+      LAYER met4 ;
+        RECT 24.325 5.200 25.925 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 63.535 5.200 65.135 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 102.745 5.200 104.345 103.600 ;
+    END
+    PORT
+      LAYER met4 ;
+        RECT 141.955 5.200 143.555 103.600 ;
+    END
+  END VPWR
   PIN clk
     DIRECTION INPUT ;
     USE SIGNAL ;
@@ -351,46 +391,6 @@ MACRO tt_um_test
         RECT 66.550 107.260 66.850 108.800 ;
     END
   END uo_out[7]
-  PIN vccd1
-    DIRECTION INOUT ;
-    USE POWER ;
-    PORT
-      LAYER met4 ;
-        RECT 24.325 5.200 25.925 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 63.535 5.200 65.135 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 102.745 5.200 104.345 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 141.955 5.200 143.555 103.600 ;
-    END
-  END vccd1
-  PIN vssd1
-    DIRECTION INOUT ;
-    USE GROUND ;
-    PORT
-      LAYER met4 ;
-        RECT 43.930 5.200 45.530 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 83.140 5.200 84.740 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 122.350 5.200 123.950 103.600 ;
-    END
-    PORT
-      LAYER met4 ;
-        RECT 161.560 5.200 163.160 103.600 ;
-    END
-  END vssd1
   OBS
       LAYER nwell ;
         RECT 5.330 99.225 162.570 102.055 ;
