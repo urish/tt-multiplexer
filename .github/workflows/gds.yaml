@@ -29,6 +29,7 @@ jobs:
       with:
         repository: efabless/openlane2
         path: openlane2
+        ref: 4a4de6ab426c8e53ae9534fdba2366a863a5af7e
 
     - uses: cachix/install-nix-action@v20
       
@@ -40,7 +41,7 @@ jobs:
     - name: Install Sky130 PDK
       run: |
         pip3 install volare
-        volare enable --pdk sky130 af3485525297d5cbe93c129ea853da2d588fac41
+        volare enable --pdk sky130 12df12e2e74145e31c5a13de02f9a1e176b56e67  
 
     - name: Harden tt_ctrl
       working-directory: ol2/tt_ctrl
