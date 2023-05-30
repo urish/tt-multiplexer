@@ -51,7 +51,7 @@ jobs:
       run: nix-shell $GITHUB_WORKSPACE/openlane2/shell.nix --run "python build.py"
 
     - name: Prepare configuration
-      run:
+      run: |
         cp ol2/tt_ctrl/runs/RUN_*/final/gds/tt_ctrl.magic.gds ol2/tt_top/gds/tt_ctrl.gds
         cp ol2/tt_ctrl/runs/RUN_*/final/lef/tt_ctrl.lef ol2/tt_top/lef
         cp ol2/tt_mux/runs/RUN_*/final/gds/tt_mux.magic.gds ol2/tt_top/gds/tt_mux.gds
