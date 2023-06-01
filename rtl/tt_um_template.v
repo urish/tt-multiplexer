@@ -18,9 +18,19 @@ module tt_um_template (
 	output wire [7:0] uio_oe,	// IOs: Enable path (active high: 0=input, 1=output)
 	input  wire       ena,
 	input  wire       clk,
-	input  wire       rst_n
+	input  wire       rst_n,
+
+	// RAM interface: 1rw
+	output ram_clk0,
+	output ram_csb0, // chip select, active low
+	output ram_web0, // write enable, active low
+	output [3:0] ram_wmask0, // write mask
+	output [8:0] ram_addr0,	// address (either 8 or 9 bit, depending on RAM size)
+	output [31:0]	ram_din0, // input data
+	input  [31:0] ram_dout0  // output data
 );
 
 	assign { uo_out, uio_out, uio_oe } = 0;
+	assign { ram_clk0, ram_csb0, ram_web0, ram_wmask0, ram_addr0, ram_din0 } = 0;
 
 endmodule // tt_um_template
