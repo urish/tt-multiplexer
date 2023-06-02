@@ -87,10 +87,10 @@ jobs:
         cp ol2/tt_mux/runs/RUN_*/final/pnl/tt_mux.pnl.v verilog/gl/tt_mux.v
         cp ol2/tt_mux/runs/RUN_*/final/nl/tt_mux.nl.v verilog/gl/tt_mux.nl.v
         cp -r ol2/tt_mux/runs/RUN_*/final/spef/* spef/
-        cp ol2/tt_top/runs/RUN_*/final/gds/tt_top.magic.gds gds/tt_top.gds
-        cp ol2/tt_top/runs/RUN_*/final/lef/tt_top.lef lef/tt_top.lef
-        cp ol2/tt_top/runs/RUN_*/final/pnl/tt_top.pnl.v verilog/gl/tt_top.v
-        cp ol2/tt_top/runs/RUN_*/final/nl/tt_top.nl.v verilog/gl/tt_top.nl.v
+        cp ol2/tt_top/runs/RUN_*/final/gds/user_project_wrapper.magic.gds gds/user_project_wrapper.gds
+        cp ol2/tt_top/runs/RUN_*/final/lef/user_project_wrapper.lef lef/user_project_wrapper.lef
+        cp ol2/tt_top/runs/RUN_*/final/pnl/user_project_wrapper.pnl.v verilog/gl/user_project_wrapper.v
+        cp ol2/tt_top/runs/RUN_*/final/nl/user_project_wrapper.nl.v verilog/gl/user_project_wrapper.nl.v
         cp -r ol2/tt_top/runs/RUN_*/final/spef/* spef/
 
     - name: upload macros artifact
