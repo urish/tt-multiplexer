@@ -185,7 +185,7 @@ def route(
 	r = Router(reader, tti)
 	r.route_vspine()
 	r.create_spine_obs()
-	#r.create_macro_obs()
+	r.create_macro_obs()
 
 
 if __name__ == "__main__":
