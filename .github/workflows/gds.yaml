@@ -36,6 +36,10 @@ jobs:
         path: openlane2
         ref: ${{ env.OPENLANE_TAG }}
 
+    - name: patch OpenLane 2
+      working-directory: openlane2
+      run: git apply ../patches/openlane2.patch
+
     - uses: cachix/install-nix-action@v20
       
     - uses: cachix/cachix-action@v12
